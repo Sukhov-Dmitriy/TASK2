@@ -61,7 +61,7 @@ int CRat0::output()
 {
     ofstream fout(outfile.c_str(), ios_base::app);
     for(int i = 0; i < dim*2; i++){
-        fout<<" X"<<i<<" = ";
+        fout<<" X"<<i/2<<" = ";
         fout<<data[i]<<"/"<<data[i+1]<<" ";// Выводим данные в строку
         i = i+1;
     }
@@ -119,7 +119,7 @@ int CRat1::output()
 {
     ofstream fout(outfile.c_str(), ios_base::app);
     for(int i = 0; i < dim*2; i++){
-        fout<<"X"<<i<<" = ";
+        fout<<"X"<<i/2<<" = ";
         fout<<data[i]<<"/"<<data[i+1]<<"\n";// Выводим данны в столбец
         i = i+1;
     }
