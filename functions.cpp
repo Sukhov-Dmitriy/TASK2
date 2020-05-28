@@ -41,6 +41,22 @@ CRat1 operator + (const CRat &A, const CRat &B){
         rat.dim = B.dim;
         return rat;
 }
+CRat1 operator - (const CRat &A, const CRat &B){
+        CRat1 rat(B.dim);
+        for(int i = 0; i< (B.dim*2);i+=2){
+            if(B.data[i+1] == A.data[i+1]){
+                rat.data[i] = A.data[i]-B.data[i];
+                rat.data[i+1] = A.data[i+1];
+            }
+            else{
+            rat.data[i] = ((A.data[i])*(B.data[i+1]))-((B.data[i])*(A.data[i+1]));
+            rat.data[i+1] = A.data[i+1]*B.data[i+1];
+        }
+        }
+
+        rat.dim = B.dim;
+        return rat;
+}
 void test1(){//оператор присваивания
     CRat0 k(2);
     for(int i = 0; i < 4; i++)
