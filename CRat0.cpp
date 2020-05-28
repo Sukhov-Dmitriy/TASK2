@@ -3,7 +3,7 @@
 #include <string>
 #include "functions.h"
 using namespace std;
-CRat0::CRat0(const CRat0 &other){// конструктор копирования
+CRat0::CRat0(const CRat0 &other){// ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГї
     this->dim = other.dim;
     for(int i = 0; i < dim*2; i++){
         this->data.push_back(other.data[i]);
@@ -19,9 +19,9 @@ CRat0::CRat0(){
 }
 
 CRat0::~CRat0(){}
-double CRat0::operator * (const CRat &B){//скалярное умножение
+double CRat0::operator * (const CRat &B){
         double ch = 0, zn = 0, p = 0;
-        for(int i = 0; i< this->dim*2;i=+2){
+        for(int i = 0; i< this->dim*2; i+=2){
             ch = (double)(this->data[i]*B.data[i]);
             zn = (double)(this->data[i+1]*B.data[i+1]);
             p += ch/zn;
@@ -33,7 +33,7 @@ int CRat0::output()
     ofstream fout(outfile.c_str(), ios_base::app);
     for(int i = 0; i < dim*2; i++){
         fout<<" X"<<i/2<<" = ";
-        fout<<data[i]<<"/"<<data[i+1]<<" ";// Выводим данные в строку
+        fout<<data[i]<<"/"<<data[i+1]<<" ";// Г‚Г»ГўГ®Г¤ГЁГ¬ Г¤Г Г­Г­Г»ГҐ Гў Г±ГІГ°Г®ГЄГі
         i = i+1;
     }
     return 0;
