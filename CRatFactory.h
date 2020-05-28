@@ -1,7 +1,9 @@
-#include<fstream>
-#include<iostream>
+#include <iostream>
+#include <fstream>
+#include <string>
 #include "CRat.h"
-
+#include "CRat0.h"
+#include "CRat1.h"
 using namespace std;
 class CRatFactory {
 public:
@@ -9,11 +11,5 @@ public:
     virtual ~CRatFactory(){}
 };
 
-class CRatFactory0 : public CRatFactory{
-public:
-    CRat* create_dat(int d);
-};
-class CRatFactory1 : public CRatFactory{
-public:
-    CRat* create_dat(int d);
-};
+
+

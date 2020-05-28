@@ -1,7 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <map>
 #include "functions.h"
-
+using namespace std;
 CRat *CreateData(ifstream &input, std::map<string,CRatFactory*>  f){
     string I;
     int d = 2;
@@ -23,10 +25,26 @@ CRat *CreateData(ifstream &input, std::map<string,CRatFactory*>  f){
     return rat;
 }
 
+CRat1 operator + (const CRat &A, const CRat &B){
+        CRat1 rat(B.dim);
+        for(int i = 0; i< (B.dim*2);i+=2){
+            if(B.data[i+1] == A.data[i+1]){
+                rat.data[i] = A.data[i]+B.data[i];
+                rat.data[i+1] = A.data[i+1];
+            }
+            else{
+            rat.data[i] = ((A.data[i])*(B.data[i+1]))+((B.data[i])*(A.data[i+1]));
+            rat.data[i+1] = A.data[i+1]*B.data[i+1];
+        }
+        }
+
+        rat.dim = B.dim;
+        return rat;
+}
 void test1(){//оператор присваивания
     CRat0 k(2);
     for(int i = 0; i < 4; i++)
-    k.data[i] = i;
+        k.data[i] = i;
     CRat0 p(2);
     p = k;
     k.data[1] = 20;
@@ -34,18 +52,20 @@ void test1(){//оператор присваивания
        cout<< "Test 1 passed saccessfully"<<endl;
     }
 }
-
 void test2(){// оператор сложения
     CRat0 k(2);
-    for(int i = 0; i < 4; i++)
-    k.data[i] = i;
-    CRat0 p(2);
-    p = k + k;
-    if(p.data[1] == 2){
+    CRat1 l(2);
+    for(int i = 0; i < k.dim*2; i++){
+        k.data[i] = i+1;
+        l.data[i] = i+2;
+    }
+    CRat1 p(2);
+    p = k + l;
+    p.show();
+    if(p.data[2] == 31 && p.data[3] == 20){
        cout<< "Test 2 passed saccessfully"<<endl;
     }
 }
-
 void test3(){// оператор скалярного умножения
     CRat1 k(2);
     double p = 0;
@@ -57,11 +77,10 @@ void test3(){// оператор скалярного умножения
        cout<< "Test 3 passed saccessfully"<<endl;
     }
 }
-
 void test4(){//конструктор копирования
     CRat0 k(2);
     for(int i = 0; i < 4; i++)
-    k.data[i] = i;
+        k.data[i] = i;
     CRat0 p = k;
     k.data[1] = 20;
     if(p.data[1] == 1){

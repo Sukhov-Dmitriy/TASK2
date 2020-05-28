@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "functions.h"
-
+using namespace std;
 int main()
 {
     setlocale(LC_ALL,"ru");
@@ -14,23 +14,26 @@ int main()
     ifstream File(filename.c_str());//c_str //Открытие файла
 
     if (!File.is_open()) // если файл не открыт
-            cout << "File isn't open!\n";
-
+    {
+        cout << "File isn't open!\n";
+        return 0;
+    }
     while (File.get(c)){ // определеие количества данных
         if (c=='\n')
             n++;
     }
+    cout<<"number of data equal to "<< n<<endl;
     File.clear();
     File.seekg(0);// флаг переведен на начало файла
+
     CRatFactory* fab0 = new CRatFactory0;//  фабрики
     CRatFactory* fab1 = new CRatFactory1;
     map<string,CRatFactory*> f = {{"Hory",fab0},{"Vert",fab1}};
 
-
     vector<CRat*> arr;// вектор для данных из файла;
 
     for(int i = 0; i < n; i++){// получение всех данных из файла
-    arr.push_back(CreateData(File, f));
+        arr.push_back(CreateData(File, f));
     }
     File.close();
 
@@ -47,5 +50,7 @@ int main()
     delete arr[i];
 
     }
+
     return 0;
 }
+
