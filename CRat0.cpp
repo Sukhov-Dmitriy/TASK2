@@ -9,6 +9,12 @@ CRat0::CRat0(const CRat0 &other){// êîíñòðóêòîð êîïèðîâàíè�
         this->data.push_back(other.data[i]);
     }
 }
+CRat0::CRat0(const CRat &other){// êîíñòðóêòîð êîïèðîâàíèÿ
+    this->dim = other.dim;
+    for(int i = 0; i < dim*2; i++){
+        this->data.push_back(other.data[i]);
+    }
+}
 CRat0::CRat0(int d){
     dim = d;
     data.resize(d*2,0);
